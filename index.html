@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catatan Bulanan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Catatan Bulanan</h1>
+
+    <!-- Placeholder untuk jika tidak ada catatan -->
+    <p id="kosong-message" style="text-align: center; color: gray;">Tidak ada catatan</p>
+
+    <div id="list-container"></div>
+
+    <button id="tambah-btn" class="tambah">＋</button>
+  </div>
+
+  <!-- Modal Konfirmasi -->
+  <div id="confirm-modal" style="display: none;">
+    <div id="confirm-box">
+      <p>Do you want to delete?</p>
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">No</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

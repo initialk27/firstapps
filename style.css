@@ -1,0 +1,286 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.bulan-item {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  border: none;
+  background: #eee;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #ccc;
+}
+
+.tambah {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00f2ff;
+  color: white;
+  font-size: 28px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 242, 255, 0.7),
+              0 0 20px rgba(0, 242, 255, 0.5),             
+              0 0 30px rgba(0, 242, 255, 0.3);
+}
+
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 5px;
+  border: none;
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-group button:first-child {
+  background: #dc3545;
+}
+
+.button-group button:hover {
+  opacity: 0.9;
+}
+
+/* Modal Konfirmasi */
+#confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#confirm-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#confirm-box p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+#confirm-box button {
+  padding: 8px 15px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#confirm-yes {
+  background-color: #dc3545;
+  color: white;
+}
+
+#confirm-no {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Judul bulan */
+#judul-bulan {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* Daftar pengeluaran */
+#list-pengeluaran {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pengeluaran-item {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+}
+
+.pengeluaran-item .tanggal {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.pengeluaran-item .nominal {
+  color: #28a745;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.pengeluaran-item .keterangan {
+  color: #333;
+  font-style: italic;
+}
+
+/* Tombol tambah dan kembali */
+#btn-tambah-pengeluaran {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.kembali {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Titik tiga */
+.menu-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 10;
+  display: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown button {
+  display: block;
+  padding: 8px 12px;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background: #f0f0f0;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0,0,0,0.4);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-actions button {
+  margin: 10px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-actions button:first-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-actions button:last-child {
+  background-color: #6c757d;
+  color: white;
+}

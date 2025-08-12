@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Pengeluaran</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Catatan Pengeluaran</h2>
+
+    <div class="form-group">
+      <label for="tanggal">Tanggal</label>
+      <input type="date" id="tanggal" />
+    </div>
+
+    <div class="form-group">
+      <label for="nominal">Nominal (Rp)</label>
+      <input type="number" id="nominal" placeholder="Contoh: 100000" />
+    </div>
+
+    <div class="form-group">
+      <label for="keterangan">Keterangan</label>
+      <input type="text" id="keterangan" placeholder="Contoh: Beli makan siang" />
+    </div>
+
+    <div class="button-group">
+      <button id="btn-kembali">← Kembali</button>
+      <button id="btn-simpan">✔️ Simpan</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const bulanIndex = localStorage.getItem("bulanTerpilih");
+      const editIndex = localStorage.getItem("editPengeluaranIndex");
+
+      const key = `pengeluaran-${bulanIndex}`;
+      const data = JSON.parse(localStorage.getItem(key)) || [];
+
+      if (!data[editIndex]) {
+        alert("Data tidak ditemukan");
+        window.location.href = "pengeluaran.html";
+        return;
+      }
+
+      const item = data[editIndex];
+
+      // isi form
+      document.getElementById("tanggal").value = getInputFormatTanggal(item.tanggal);
+      document.getElementById("nominal").value = item.nominal;
+      document.getElementById("keterangan").value = item.keterangan;
+
+      // tombol kembali
+      document.getElementById("btn-kembali").addEventListener("click", function () {
+        window.location.href = "pengeluaran.html";
+      });
+
+      // tombol simpan
+      document.getElementById("btn-simpan").addEventListener("click", function () {
+        const tanggalInput = document.getElementById("tanggal").value;
+        const nominalInput = parseInt(document.getElementById("nominal").value);
+        const keteranganInput = document.getElementById("keterangan").value.trim();
+
+        if (!tanggalInput || isNaN(nominalInput) || !keteranganInput) {
+          alert("Harap isi semua kolom dengan benar.");
+          return;
+        }
+
+        data[editIndex] = {
+          tanggal: formatTanggalIndonesia(tanggalInput),
+          nominal: nominalInput,
+          keterangan: keteranganInput
+        };
+
+        localStorage.setItem(key, JSON.stringify(data));
+        window.location.href = "pengeluaran.html";
+      });
+
+      // fungsi bantu
+      function formatTanggalIndonesia(tgl) {
+        const hariArray = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const bulanArray = [
+          "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+          "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
+        const date = new Date(tgl);
+        const hari = hariArray[date.getDay()];
+        const tanggal = date.getDate();
+        const bulan = bulanArray[date.getMonth()];
+        const tahun = date.getFullYear();
+        return `${hari}, ${tanggal} ${bulan} ${tahun}`;
+      }
+
+      function getInputFormatTanggal(teksTanggal) {
+        const tanggal = new Date(teksTanggal);
+        if (!isNaN(tanggal)) {
+          return tanggal.toISOString().split("T")[0];
+        }
+
+        // fallback parsing manual
+        const parts = teksTanggal.split(" ");
+        if (parts.length === 4) {
+          const tanggal = parseInt(parts[1]);
+          const bulan = convertBulan(parts[2]);
+          const tahun = parseInt(parts[3]);
+          const date = new Date(tahun, bulan, tanggal);
+          return date.toISOString().split("T")[0];
+        }
+
+        return "";
+      }
+
+      function convertBulan(bulanText) {
+        const bulanArray = [
+          "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+          "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
+        return bulanArray.indexOf(bulanText);
+      }
+    });
+  </script>
+</body>
+</html>
